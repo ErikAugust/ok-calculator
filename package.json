@@ -8,5 +8,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Erik August Johnson <erik@simplepath.io>",
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "private": true
 }
