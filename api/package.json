@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "develop": "nodemon"
+    "develop": "nodemon",
+    "test": "mocha --recursive 'test/**/test.*.js' --timeout 5000"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,6 +13,11 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "lodash": "^4.17.20",
     "morgan": "~1.9.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.1.3"
   }
 }

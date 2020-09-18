@@ -9,5 +9,6 @@
   },
   "author": "Erik August Johnson <erik@erikaugust.com>",
   "license": "UNLICENSED",
-  "private": true
+  "private": true,
+  "devDependencies": {}
 }
