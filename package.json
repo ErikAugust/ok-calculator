@@ -4,6 +4,7 @@
   "description": "QuickenLoans Coding Challenge: Angular and Node-based application for calculating road trip expenses",
   "main": "index.js",
   "scripts": {
+    "install-all": "npm install --prefix ./api & npm install --prefix ./web",
     "start": "npm run start --prefix ./api & npm run start --prefix ./web",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
