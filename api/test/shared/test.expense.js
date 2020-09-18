@@ -41,7 +41,6 @@ describe('Expense', () => {
         });
 
         const summed = Expense.sumExpenses(expenses);
-        console.log(summed);
 
         it('sums total correctly ($217.18)', () => {
             expect(summed.total).to.equal(217.18);

@@ -10,7 +10,7 @@ const money = require('./money');
 class Expense {
     constructor(name, amount) {
         this.name = name;
-        this.amount = amount;
+        this.amount = parseFloat(amount);
 
         if (!this.name || typeof this.name !== 'string') throw new Error('Invalid name in Expense!');
         if (!this.amount || typeof this.amount !== 'number') throw new Error('Invalid amount in Expense!');

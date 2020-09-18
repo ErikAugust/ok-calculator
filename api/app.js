@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const expensesRouter = require('./routes/expenses');
+const payoutsRouter = require('./routes/payouts');
 
 const app = express();
 
@@ -25,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Routing
  */
 app.use('/', indexRouter);
-app.use('/expenses', expensesRouter);
+app.use('/payouts', payoutsRouter);
 
 /**
  * Error Handling
