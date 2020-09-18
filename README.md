@@ -18,7 +18,9 @@ TODO
 Node version 12+ (and corresponding npm version) is required.
 
 ## Installation
-Run `npm run install-all` in the project root. This script will kick off `npm install` in both the Express server (`api`) and the Angular application (`web`).
+Run `npm run install-all` in the project root.
+
+This script will kick off `npm install` in both the Express server (`api`) and the Angular application (`web`).
 
 ## Quick Start
 Run `npm run start` from the project root. This script will start both the Express server, and the Angular application.
@@ -36,6 +38,7 @@ Run `npm run start` from the project root. This script will start both the Expre
 `http://localhost:3000/payouts`
 
 **JSON Body Parameters**
+
 `expenses` : array : Specifies the expenses you want to calculate a payout on.
 
 `expenses.name` : string : The name of the person who incurred the expense.
