@@ -4,10 +4,10 @@
   "description": "QuickenLoans Coding Challenge: Angular and Node-based application for calculating road trip expenses",
   "main": "index.js",
   "scripts": {
-    "start": "npm run start --prefix ./api && npm run start --prefix ./web",
+    "start": "npm run start --prefix ./api & npm run start --prefix ./web",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Erik August Johnson <erik@simplepath.io>",
+  "author": "Erik August Johnson <erik@erikaugust.com>",
   "license": "UNLICENSED",
   "private": true
 }
