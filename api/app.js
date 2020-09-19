@@ -5,11 +5,30 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors');
+const env = process.env.NODE_ENV || 'development';
 
 const indexRouter = require('./routes/index');
 const payoutsRouter = require('./routes/payouts');
 
 const app = express();
+
+// CORS Handling:
+const whitelist = [
+  'http://localhost:4200'
+];
+const corsOptions = {
+  origin: function(origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else if (env === 'development' || env === 'staging') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
+app.use(cors(corsOptions));
 
 // View engine setup:
 app.set('views', path.join(__dirname, 'views'));
