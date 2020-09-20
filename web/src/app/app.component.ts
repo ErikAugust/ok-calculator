@@ -82,13 +82,28 @@ export class AppComponent {
   }
 
   /**
-   * Recalculates the pending amount on change
+   * Sums expenses, recalculates the pending amount
    * @param event
+   * @param index
    */
   onChangeAmount(event, index) {
     if (event.target.value) {
-      this.pendingAmount += parseFloat(event.target.value);
-      // Re-sum all the
+      // Split on comma-separated:
+      const amounts = event.target.value.split(/,| |;/);
+      const reducer = (accumulator, currentValue) => accumulator + parseFloat(currentValue);
+      event.target.value = amounts.reduce(reducer, 0);
+
+      // Re-sum pending amount:
+      this.pendingAmount = 0;
+      for (let i = 0; i < this.e.length; i++) {
+        const element = this.e.at(i);
+        if (i === index) {
+          // Use the sum of expenses for the given input:
+          this.pendingAmount += parseFloat(event.target.value);
+        } else {
+          this.pendingAmount += parseFloat(element.value.amount);
+        }
+      }
     }
   }
 
