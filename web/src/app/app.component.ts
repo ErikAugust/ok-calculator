@@ -14,6 +14,7 @@ import { ApiService } from "./api.service";
 export class AppComponent {
   dynamicForm: FormGroup;
   pendingAmount = 0;
+  responsePending = false;
   calculated = false;
   summary: Object;
 
@@ -23,6 +24,36 @@ export class AppComponent {
    * On initialize create form and add an initial item
    */
   ngOnInit() {
+    this.initializeForm();
+  }
+
+  /**
+   * Getter methods for convenience
+   */
+  get f() { return this.dynamicForm.controls; }
+  get e() { return this.f.expenses as FormArray; }
+
+  /**
+   * Adds another expense item to form
+   */
+  addExpense() {
+    this.e.push(this.formBuilder.group({
+      name: ['', Validators.required],
+      amount:[0, Validators.required]
+    }));
+  }
+
+  /**
+   * Shows the Expenses Form section
+   */
+  goBack() {
+    this.calculated = false;
+  }
+
+  /**
+   * Initializes dynamic form and adds one set of expense inputs
+   */
+  initializeForm() {
     this.dynamicForm = this.formBuilder.group({
       expenses: new FormArray([])
     });
@@ -32,16 +63,10 @@ export class AppComponent {
     }));
   }
 
-  get f() { return this.dynamicForm.controls; }
-  get e() { return this.f.expenses as FormArray; }
-
-  addExpense() {
-    this.e.push(this.formBuilder.group({
-      name: ['', Validators.required],
-      amount:[0, Validators.required]
-    }));
-  }
-
+  /**
+   * Removes expense item by index
+   * @param index
+   */
   removeExpense(index) {
     const amount = this.e.value[index].amount;
     this.pendingAmount -= parseFloat(amount);
@@ -49,11 +74,22 @@ export class AppComponent {
   }
 
   /**
+   * Re-initializes form, and goes back to form section
+   */
+  reset() {
+    this.initializeForm();
+    this.goBack();
+  }
+
+  /**
    * Recalculates the pending amount on change
    * @param event
    */
-  onChangeAmount(event) {
-    this.pendingAmount += parseFloat(event.target.value);
+  onChangeAmount(event, index) {
+    if (event.target.value) {
+      this.pendingAmount += parseFloat(event.target.value);
+      // Re-sum all the
+    }
   }
 
   /**
@@ -64,10 +100,11 @@ export class AppComponent {
       try {
         this.summary = await this.api.postPayouts(this.e);
         this.calculated = true;
-        console.log(this.summary);
       } catch (error) {
         console.log(error);
         // Show alert:
+      } finally {
+        this.responsePending = false;
       }
     }
   }

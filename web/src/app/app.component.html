@@ -5,6 +5,7 @@
     </div>
   </header>
 
+  <!-- Results section -->
   <main role="main" class="inner cover calculate-box" *ngIf="calculated">
     <h2>Total Expenses: {{ summary['total'] | currency }}</h2>
     <h3>An equal share of the expenses is {{ summary['equalShare'] | currency }}.</h3>
@@ -18,7 +19,34 @@
         Nobody owes anyone anything... all settled!
       </p>
     </div>
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <p class="lead">
+          <button
+            style="width: 95%"
+            type="button"
+            (click)="goBack()"
+            class="btn btn-lg btn-secondary">
+            Go Back
+          </button>
+        </p>
+      </div>
+      <div class="col-md-6 col-sm-12">
+        <p class="lead">
+          <button
+            style="width: 95%"
+            type="button"
+            (click)="reset()"
+            class="btn btn-lg btn-dark">
+            Start New
+          </button>
+        </p>
+      </div>
+    </div>
   </main>
+  <!-- END: Results section -->
+
+  <!-- Expenses Form section -->
   <main role="main" class="inner cover calculate-box" *ngIf="!calculated">
     <h1 class="cover-heading">Calculate Shared Expenses</h1>
     <p class="lead">Add expenses, and calculate who owes what <i>instantly</i>.</p>
@@ -46,7 +74,7 @@
                 formControlName="amount"
                 class="form-control"
                 [ngClass]="{ 'is-invalid': expense['controls'].amount.errors }"
-                (change)="onChangeAmount($event)" />
+                (change)="onChangeAmount($event, i)" />
               <div *ngIf="expense['controls'].amount.errors" class="invalid-feedback">
                 <div *ngIf="expense['controls'].amount.errors.required">Amount is required</div>
               </div>
@@ -66,21 +94,33 @@
       <div class="row">
         <div class="col-md-6 col-sm-12">
           <p class="lead">
-            <button style="width: 95%" type="button" (click)="addExpense()" class="btn btn-lg btn-secondary">Add Expense</button>
+            <button
+              style="width: 95%"
+              type="button"
+              (click)="addExpense()"
+              class="btn btn-lg btn-secondary">
+              Add Expense
+            </button>
           </p>
         </div>
         <div class="col-md-6 col-sm-12">
           <p class="lead">
-            <button [disabled]="!dynamicForm.valid || e.length < 2" style="width: 95%" type="submit" class="btn btn-lg btn-dark">Calculate {{ pendingAmount | currency }}</button>
+            <button
+              [disabled]="responsePending || !dynamicForm.valid || e.length < 2"
+              style="width: 95%"
+              type="submit"
+              class="btn btn-lg btn-dark">
+              Calculate {{ pendingAmount | currency }}
+            </button>
           </p>
         </div>
       </div>
     </form>
   </main>
-
+  <!-- END: Expenses Form section -->
   <footer class="mastfoot mt-auto">
     <div class="inner">
-      <p>Cover template for <a href="https://getbootstrap.com/">Bootstrap</a>, by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>Created by <a href="http://www.github.com/ErikAugust">Erik August Johnson</a>. Background image courtesy of ...</p>
     </div>
   </footer>
 </div>
