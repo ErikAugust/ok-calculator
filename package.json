@@ -7,7 +7,8 @@
     "install-all": "npm install --prefix ./api & npm install --prefix ./web",
     "start": "npm run start --prefix ./api & npm run start --prefix ./web",
     "test": "npm test --prefix ./api & npm test --prefix ./web",
-    "e2e": "npm run e2e --prefix ./web"
+    "e2e": "npm run e2e --prefix ./web",
+    "deploy-demo": "aws s3 cp ./dist/client s3://eaj-trip-calculator --recursive --acl public-read"
   },
   "author": "Erik August Johnson <erik@erikaugust.com>",
   "license": "UNLICENSED",

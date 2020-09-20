@@ -51,11 +51,11 @@ Run E2E tests with the `npm run e2e` command from project root. This will run th
 
 **JSON Body Parameters**
 
-`expenses` : array : Specifies the expenses you want to calculate a payout on.
+`expenses` - array : Specifies the expenses you want to calculate a payout on.
 
-`expenses.name` : string : The name of the person who incurred the expense.
+`expenses.name` - string : The name of the person who incurred the expense.
 
-`expenses.amount` : number : The amount of the expense incurred.
+`expenses.amount` - number : The amount of the expense incurred.
 
 **Example Request**
 ```shell script

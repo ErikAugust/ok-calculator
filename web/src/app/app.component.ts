@@ -89,7 +89,7 @@ export class AppComponent {
    */
   onChangeAmount(event, index) {
     if (event.target.value) {
-      // Split on comma-separated:
+      // Split on separators (, ; [space]):
       const amounts = event.target.value.split(/,| |;/);
       const reducer = (accumulator, currentValue) => {
         const value = parseFloat(currentValue);
