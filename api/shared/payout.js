@@ -38,12 +38,15 @@ class Payout {
      */
     static calculatePayouts(people) {
         const owed = _.filter(people, person => person.owed);
+        const totalOwed = _.reduce(owed, (sum, owed) => {
+            return sum + owed.owed;
+        }, 0);
         const owes = _.filter(people, person => person.owes);
         const payouts = [];
         _.each(owes, personOwes => {
-            // Amount owed evenly divided by amount of people owed:
-            const amount = money.parseAmount(personOwes.owes / owed.length);
             _.each(owed, personOwed => {
+                const decimalOfTotalOwed = personOwed.owed / totalOwed;
+                const amount = money.parseAmount(personOwes.owes * decimalOfTotalOwed);
                 payouts.push(new Payout(personOwes.name, personOwed.name, amount));
             });
         });
