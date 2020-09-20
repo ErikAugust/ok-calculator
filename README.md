@@ -3,6 +3,9 @@
 
 *Note: This is for a coding challenge.*
 
+## Demo
+A demo is available at [http://eaj-trip-calculator.s3-website-us-east-1.amazonaws.com](http://eaj-trip-calculator.s3-website-us-east-1.amazonaws.com/).
+
 ## Challenge
 *Build a basic page/app that calculates the expenses who like to go on road trips.*
 
