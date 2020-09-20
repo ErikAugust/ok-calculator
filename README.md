@@ -15,7 +15,7 @@
 TODO
 
 ## Requirements
-Node version 12+ (and corresponding npm version) is required.
+Node version 7.6+ (and corresponding npm version) is required. Version 12+ is recommended.
 
 ## Installation
 Run `npm run install-all` in the project root.
@@ -25,10 +25,13 @@ This script will kick off `npm install` in both the Express server (`api`) and t
 ## Quick Start
 Run `npm run start` from the project root. This script will start both the Express server, and the Angular application.
 
+## Running Tests
+Run `npm test` from the project root. This script will run all tests - both server tests with Mocha, and front-end using Karma.
+
 ## Technologies Used
-* Node.js
+* Node.js 12
 * Express
-* Angular
+* Angular 10
 
 ## API Reference
 
@@ -44,3 +47,31 @@ Run `npm run start` from the project root. This script will start both the Expre
 `expenses.name` : string : The name of the person who incurred the expense.
 
 `expenses.amount` : number : The amount of the expense incurred.
+
+**Example Request**
+```shell script
+curl --location --request POST 'localhost:3000/payouts' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+	"expenses": [
+		{ "name": "Adriana", "amount": 5.75 },
+		{ "name": "Adriana", "amount": 5.75 },
+		{ "name": "Bao", "amount": 12 }
+	]
+}'
+```
+
+**Example Response**
+```json
+{
+    "total": 23.5,
+    "equalShare": 11.75,
+    "payouts": [
+        {
+            "owes": "Adriana",
+            "owed": "Bao",
+            "amount": 0.25
+        }
+    ]
+}
+```
