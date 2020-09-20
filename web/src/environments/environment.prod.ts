@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiPrefix: 'https://api.okcalculator.com'
+  apiPrefix: 'http://demo.eba-gip6f3xf.us-east-1.elasticbeanstalk.com'
 };
