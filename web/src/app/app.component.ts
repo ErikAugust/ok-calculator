@@ -88,26 +88,34 @@ export class AppComponent {
    * @param index
    */
   onChangeAmount(event, index) {
+    let element = this.e.at(index);
+
     if (event.target.value) {
       // Split on separators (, ; [space]):
       const amounts = event.target.value.split(/,| |;/);
+
+      // Sum amounts:
       const reducer = (accumulator, currentValue) => {
         const value = parseFloat(currentValue);
         return !isNaN(value) ? accumulator + value : accumulator;
       };
-      event.target.value = amounts.reduce(reducer, 0);
+      const sum = amounts.reduce(reducer, 0);
+      element.patchValue({ name: element.value.name, amount: sum });
 
-      // Re-sum pending amount:
-      this.pendingAmount = 0;
-      for (let i = 0; i < this.e.length; i++) {
-        const element = this.e.at(i);
-        if (i === index) {
-          // Use the sum of expenses for the given input:
-          this.pendingAmount += parseFloat(event.target.value);
-        } else {
-          this.pendingAmount += parseFloat(element.value.amount);
-        }
-      }
+      // Sum all expense inputs:
+      this.sumAllExpenses();
+    }
+  }
+
+  /**
+   * Sums all expense input values
+   */
+  private sumAllExpenses() {
+    // Re-sum pending amount:
+    this.pendingAmount = 0;
+
+    for (let i = 0; i < this.e.length; i++) {
+      this.pendingAmount += parseFloat(this.e.at(i).value.amount);
     }
   }
 
