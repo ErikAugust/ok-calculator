@@ -10,12 +10,19 @@
 
 *The app does not need to conform to any existing brand styles.*
 
-## Guidelines
+## Challenge Requirements
+- The page should be built out using Angular 7 or above
+- The page should be fully responsive and mobile friendly
+- The page should contain the following fields (per student):
+    - Name
+    - Expenses
+- The page should have a Calculate button
+- The page should show how much each student needs to pay out to any other students
+- The endpoint should be a NodeJS Web API using a recent version of NodeJS and following RESTful principles
+- This code should be saved 
 
-TODO
-
-## Requirements
-Node version 7.6+ (and corresponding npm version) is required. Version 12+ is recommended.
+## Platform Requirements
+NodeJS version 7.6+ (and corresponding npm version) is required. Version 12+ is recommended.
 
 ## Installation
 Run `npm run install-all` in the project root.
@@ -28,8 +35,10 @@ Run `npm run start` from the project root. This script will start both the Expre
 ## Running Tests
 Run `npm test` from the project root. This script will run all tests - both server tests with Mocha, and front-end using Karma.
 
+Run E2E tests with the `npm run e2e` command from project root. This will run the browser E2E via Protractor from the Angular project.
+
 ## Technologies Used
-* Node.js 12
+* NodeJS 12
 * Express
 * Angular 10
 

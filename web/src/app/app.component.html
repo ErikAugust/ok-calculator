@@ -50,7 +50,7 @@
   <main role="main" class="inner cover calculate-box" *ngIf="!calculated">
     <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = ''">{{ errorMessage }}</ngb-alert>
     <h1 class="cover-heading">Calculate Shared Expenses</h1>
-    <p class="lead">Add expenses, and calculate who owes what <i>instantly</i>.</p>
+    <p class="lead">Add expenses and calculate who owes what <i>instantly</i>.</p>
     <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
       <div *ngFor="let expense of e.controls; let i = index" class="list-group list-group-flush">
         <div class="list-group-item" style="background: transparent; padding: 0;">
