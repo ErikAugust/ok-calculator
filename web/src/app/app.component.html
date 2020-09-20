@@ -48,6 +48,7 @@
 
   <!-- Expenses Form section -->
   <main role="main" class="inner cover calculate-box" *ngIf="!calculated">
+    <ngb-alert type="danger" *ngIf="errorMessage" (close)="errorMessage = ''">{{ errorMessage }}</ngb-alert>
     <h1 class="cover-heading">Calculate Shared Expenses</h1>
     <p class="lead">Add expenses, and calculate who owes what <i>instantly</i>.</p>
     <form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
@@ -99,7 +100,7 @@
               type="button"
               (click)="addExpense()"
               class="btn btn-lg btn-secondary">
-              Add Expense
+              Add Row
             </button>
           </p>
         </div>
@@ -120,7 +121,7 @@
   <!-- END: Expenses Form section -->
   <footer class="mastfoot mt-auto">
     <div class="inner">
-      <p>Created by <a href="http://www.github.com/ErikAugust">Erik August Johnson</a>. Background image courtesy of ...</p>
+      <p><span>Photo by <a href="https://unsplash.com/@mikejerskine?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Mike Erskine</a> on <a href="https://unsplash.com/?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span></p>
     </div>
   </footer>
 </div>

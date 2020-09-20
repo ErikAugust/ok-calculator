@@ -15,6 +15,7 @@ export class AppComponent {
   dynamicForm: FormGroup;
   pendingAmount = 0;
   responsePending = false;
+  errorMessage = '';
   calculated = false;
   summary: Object;
 
@@ -90,7 +91,10 @@ export class AppComponent {
     if (event.target.value) {
       // Split on comma-separated:
       const amounts = event.target.value.split(/,| |;/);
-      const reducer = (accumulator, currentValue) => accumulator + parseFloat(currentValue);
+      const reducer = (accumulator, currentValue) => {
+        const value = parseFloat(currentValue);
+        return !isNaN(value) ? accumulator + value : accumulator;
+      };
       event.target.value = amounts.reduce(reducer, 0);
 
       // Re-sum pending amount:
@@ -113,11 +117,11 @@ export class AppComponent {
   async onSubmit() {
     if (this.e.length > 1 && this.dynamicForm.valid) {
       try {
+        this.errorMessage = '';
         this.summary = await this.api.postPayouts(this.e);
         this.calculated = true;
       } catch (error) {
-        console.log(error);
-        // Show alert:
+        this.errorMessage = error.message;
       } finally {
         this.responsePending = false;
       }
