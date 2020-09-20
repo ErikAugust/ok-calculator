@@ -7,7 +7,7 @@ const router = express.Router();
  */
 router.get('/', async (request, response, next) => {
   return response.json({
-    text: 'Hello world!'
+    message: 'Hello world!'
   });
 });
 

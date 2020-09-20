@@ -52,14 +52,16 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('.masthead-brand').textContent).toContain('Trip Calculator');
   });
 
-  it('should have a dynamic form on initialization', () => {
-    app.ngOnInit();
-    expect(app.dynamicForm instanceof FormGroup).toBeTrue();
-  });
+  describe('ngOnInit()', () => {
+    it('should have a dynamic form on initialization', () => {
+      app.ngOnInit();
+      expect(app.dynamicForm instanceof FormGroup).toBeTrue();
+    });
 
-  it('should have a single set of inputs on initialization', () => {
-    app.ngOnInit();
-    expect(app.e.length).toEqual(1);
+    it('should have a single set of inputs on initialization', () => {
+      app.ngOnInit();
+      expect(app.e.length).toEqual(1);
+    });
   });
 
   describe('addExpense()', () => {
