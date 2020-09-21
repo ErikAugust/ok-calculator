@@ -99,12 +99,20 @@ export class AppComponent {
         const value = parseFloat(currentValue);
         return !isNaN(value) ? accumulator + value : accumulator;
       };
-      const sum = amounts.reduce(reducer, 0);
+      const sum = this.parseAmount(amounts.reduce(reducer, 0));
       element.patchValue({ name: element.value.name, amount: sum });
 
       // Sum all expense inputs:
       this.sumAllExpenses();
     }
+  }
+
+  /**
+   * Parses floating-point to money (.XX)
+   * @param {number} amount
+   */
+  private parseAmount(amount) {
+    return parseFloat(amount.toFixed(2));
   }
 
   /**
