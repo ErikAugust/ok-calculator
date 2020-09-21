@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { FormArray, FormGroup } from '@angular/forms';
+import { environment } from "../environments/environment";
 
 
 @Injectable({
@@ -27,6 +28,6 @@ export class ApiService {
     }
 
     // Make HTTP POST to /payouts endpoint:
-    return this.http.post('http://localhost:3000/payouts', { expenses: expenses }).toPromise();
+    return this.http.post(`${environment.apiPrefix}/payouts`, { expenses: expenses }).toPromise();
   }
 }
